@@ -1,0 +1,26 @@
+Options -Indexes
+
+# PHP settings
+php_value upload_max_filesize 10M
+php_value post_max_size 12M
+php_value max_execution_time 30
+
+# Charset
+AddDefaultCharset UTF-8
+
+# Security headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+
+RewriteEngine On
+RewriteBase /
+
+# Archivos y directorios reales pasan directamente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# /username  →  user.php?u=username
+# Excluye rutas conocidas del sistema
+RewriteCond %{REQUEST_URI} !^/(login|logout|register|upload|settings|invitations|archive|favorites|admin)(/|$)
+RewriteRule ^([a-zA-Z0-9_]{3,30})$ user.php?u=$1 [L,QSA]

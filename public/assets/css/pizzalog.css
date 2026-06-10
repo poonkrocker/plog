@@ -1,0 +1,715 @@
+/* ============================================================
+   pizzalog.css — Estilo fiel al Fotolog original
+   Fondo oscuro teal, tipografía Verdana, acentos magenta/cyan
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg:           #1a3a3a;
+    --bg-mid:       #0d2a2a;
+    --bg-light:     #1f4444;
+    --border:       #2a5555;
+    --text:         #ccdddd;
+    --text-dim:     #7aabab;
+    --accent:       #ff44cc;       /* magenta — links, destacados */
+    --accent2:      #44ffee;       /* cyan — hover, labels */
+    --white:        #ffffff;
+    --input-bg:     #0d2020;
+    --input-border: #2a6666;
+    --thumb-w:      110px;
+    --thumb-h:      82px;
+    --ff-w:         110px;
+    --ff-h:         82px;
+}
+
+html { font-size: 13px; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent2); text-decoration: underline; }
+
+/* ── HEADER ────────────────────────────────────────────────── */
+#site-header {
+    background-color: var(--bg-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 0;
+    text-align: center;
+}
+#site-header .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+#site-header .logo span { color: var(--accent2); }
+#site-header nav {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--text-dim);
+}
+#site-header nav a { color: var(--accent2); margin: 0 8px; }
+
+/* ── LAYOUT PRINCIPAL (3 columnas) ─────────────────────────── */
+#wrapper {
+    width: 860px;
+    margin: 0 auto;
+    padding: 12px 0;
+}
+
+#layout {
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+}
+
+/* Columna izquierda: FF */
+#col-left {
+    width: 155px;
+    flex-shrink: 0;
+    padding-right: 10px;
+}
+
+/* Columna central */
+#col-center {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Columna derecha: fotos anteriores */
+#col-right {
+    width: 155px;
+    flex-shrink: 0;
+    padding-left: 10px;
+}
+
+/* ── ENCABEZADO DE PERFIL ───────────────────────────────────── */
+#profile-header {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+}
+#profile-header .username-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--accent);
+}
+#profile-header .location { color: var(--accent2); }
+#profile-header .bio { margin-top: 3px; color: var(--text); }
+#profile-header .social-icons { margin-top: 4px; }
+#profile-header .social-icons a { color: var(--accent2); font-size: 12px; margin: 0 3px; }
+
+/* Navegación anterior/siguiente */
+#post-nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--accent);
+}
+#post-nav a { color: var(--accent); }
+#post-nav a:hover { color: var(--accent2); }
+
+/* ── POST CENTRAL ───────────────────────────────────────────── */
+#post-main {
+    background-color: var(--bg-mid);
+    border: 1px solid var(--border);
+}
+#post-main .post-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--white);
+    padding: 6px 8px 4px;
+    border-bottom: 1px solid var(--border);
+}
+#post-main .post-photo {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+#post-main .post-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+#post-main .post-body {
+    padding: 8px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-top: 1px solid var(--border);
+}
+#post-main .post-date-line {
+    padding: 4px 8px;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: right;
+    border-top: 1px solid var(--border);
+}
+
+/* ── COMENTARIOS ────────────────────────────────────────────── */
+#comments-section {
+    margin-top: 8px;
+    background-color: var(--bg-mid);
+    border: 1px solid var(--border);
+}
+#comments-section .comments-header {
+    padding: 5px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent2);
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-light);
+}
+.comment-item {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+}
+.comment-item:last-child { border-bottom: none; }
+.comment-item .c-author {
+    font-weight: bold;
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.comment-item .c-body { color: var(--text); flex: 1; }
+.comment-item .c-date {
+    font-size: 10px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.comment-item .c-delete {
+    color: var(--text-dim);
+    font-size: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.comment-item .c-delete:hover { color: #ff4444; }
+
+/* Formulario de comentario */
+#comment-form {
+    padding: 6px 8px;
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border);
+}
+#comment-form textarea {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text);
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    padding: 4px;
+    resize: vertical;
+    min-height: 48px;
+}
+#comment-form button {
+    margin-top: 4px;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 3px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+}
+#comment-form button:hover { background: var(--accent2); color: var(--bg); }
+#comments-full-limit {
+    padding: 5px 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+/* ── COLUMNA DERECHA: FOTOS ANTERIORES ──────────────────────── */
+.col-section-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 6px;
+}
+.col-section-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.prev-photos-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.prev-photo-item {
+    text-align: center;
+}
+.prev-photo-item a { display: block; }
+.prev-photo-item img {
+    width:  var(--thumb-w);
+    height: var(--thumb-h);
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--border);
+}
+.prev-photo-item img:hover { border-color: var(--accent2); }
+.prev-photo-item .thumb-date {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+}
+
+.more-link {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: var(--accent2);
+    margin-top: 8px;
+}
+
+/* ── COLUMNA IZQUIERDA: FF ──────────────────────────────────── */
+.ff-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.ff-item { text-align: center; }
+.ff-item a { display: block; }
+.ff-item img {
+    width:  var(--ff-w);
+    height: var(--ff-h);
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--border);
+}
+.ff-item img:hover { border-color: var(--accent); }
+.ff-item .ff-username {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 2px;
+    display: block;
+}
+.ff-item .ff-location {
+    font-size: 10px;
+    color: var(--accent2);
+}
+.ff-item .ff-sub {
+    font-size: 10px;
+    color: var(--text-dim);
+}
+
+/* Botón agregar/quitar FF */
+.btn-ff {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 10px;
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+}
+.btn-ff:hover { background: var(--accent); color: var(--white); }
+.btn-ff.remove { border-color: var(--text-dim); color: var(--text-dim); }
+.btn-ff.remove:hover { background: #ff4444; border-color: #ff4444; color: var(--white); }
+
+/* ── FORMS GENERALES ────────────────────────────────────────── */
+.form-box {
+    width: 380px;
+    margin: 40px auto;
+    background: var(--bg-mid);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+}
+.form-box h1 {
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-align: center;
+}
+.form-row { margin-bottom: 12px; }
+.form-row label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 3px;
+}
+.form-row input[type=text],
+.form-row input[type=email],
+.form-row input[type=password],
+.form-row textarea,
+.form-row input[type=file] {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text);
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    padding: 5px 7px;
+}
+.form-row textarea { resize: vertical; min-height: 80px; }
+.form-row .char-count {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: right;
+    margin-top: 2px;
+}
+.form-submit {
+    text-align: center;
+    margin-top: 14px;
+}
+.btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 6px 28px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+.btn-primary:hover { background: var(--accent2); color: var(--bg); }
+
+.form-error {
+    background: #3a0a0a;
+    border: 1px solid #aa2222;
+    color: #ff8888;
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+.form-success {
+    background: #0a2a1a;
+    border: 1px solid #226644;
+    color: #88ffcc;
+    padding: 6px 10px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+.form-note {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ── UPLOAD FORM ────────────────────────────────────────────── */
+.upload-box { width: 520px; }
+.upload-preview {
+    margin-top: 8px;
+    display: none;
+}
+.upload-preview img {
+    max-width: 100%;
+    border: 1px solid var(--border);
+}
+
+/* ── FEED / HOMEPAGE GRID ───────────────────────────────────── */
+#feed-header {
+    text-align: center;
+    padding: 16px 0 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+}
+#feed-header h2 {
+    font-size: 14px;
+    color: var(--accent2);
+    font-weight: bold;
+}
+
+.feed-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+}
+.feed-item {
+    text-align: center;
+    width: 130px;
+}
+.feed-item a { display: block; }
+.feed-item img {
+    width: 130px;
+    height: 97px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
+}
+.feed-item img:hover { border-color: var(--accent); }
+.feed-item .feed-username {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 3px;
+}
+.feed-item .feed-date {
+    font-size: 10px;
+    color: var(--text-dim);
+}
+
+.pagination {
+    text-align: center;
+    margin: 16px 0;
+    font-size: 12px;
+}
+.pagination a {
+    color: var(--accent2);
+    margin: 0 6px;
+}
+
+/* ── ARCHIVO CALENDARIO ─────────────────────────────────────── */
+.archive-year { margin-bottom: 20px; }
+.archive-year h3 {
+    font-size: 13px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+.archive-months {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.archive-month { width: 130px; }
+.archive-month h4 {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent2);
+    margin-bottom: 4px;
+    text-transform: capitalize;
+}
+.cal-table {
+    border-collapse: collapse;
+    font-size: 10px;
+    width: 100%;
+}
+.cal-table th {
+    color: var(--text-dim);
+    padding: 1px 2px;
+    text-align: center;
+}
+.cal-table td {
+    padding: 1px 2px;
+    text-align: center;
+    color: var(--text-dim);
+}
+.cal-table td.has-post a {
+    color: var(--accent);
+    font-weight: bold;
+}
+.cal-table td.has-post a:hover { color: var(--accent2); }
+
+/* ── ADMIN ──────────────────────────────────────────────────── */
+.admin-box {
+    width: 600px;
+    margin: 30px auto;
+    background: var(--bg-mid);
+    border: 1px solid var(--border);
+    padding: 20px;
+}
+.admin-box h1 { font-size: 15px; color: var(--accent); margin-bottom: 14px; }
+.admin-box h2 { font-size: 13px; color: var(--accent2); margin: 14px 0 8px; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 16px; }
+.admin-table th {
+    background: var(--bg-light);
+    color: var(--accent2);
+    padding: 4px 6px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+.admin-table td {
+    padding: 4px 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+}
+.admin-table tr:hover td { background: var(--bg-light); }
+.admin-table .inv-code {
+    font-family: monospace;
+    color: var(--accent2);
+    letter-spacing: 1px;
+}
+
+/* ── PERFIL / SETTINGS ──────────────────────────────────────── */
+.profile-box { width: 460px; }
+.avatar-preview img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+#site-footer {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding: 10px 0;
+    margin-top: 20px;
+}
+#site-footer a { color: var(--accent2); }
+
+/* ── MENSAJES FLASH ─────────────────────────────────────────── */
+.flash-error   { background:#3a0a0a; border:1px solid #aa2222; color:#ff8888; padding:6px 10px; font-size:11px; margin:8px 0; }
+.flash-success { background:#0a2a1a; border:1px solid #226644; color:#88ffcc; padding:6px 10px; font-size:11px; margin:8px 0; }
+.flash-info    { background:#0a1a2a; border:1px solid #224466; color:#88ccff; padding:6px 10px; font-size:11px; margin:8px 0; }
+
+/* ── NO-PHOTO placeholder ───────────────────────────────────── */
+.no-photo-box {
+    background: var(--bg-light);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 11px;
+}
+
+/* ── SOCIAL ICONS ───────────────────────────────────────────── */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.social-icon:hover { text-decoration: none; }
+.social-icon--ig:hover  { color: #e1306c; border-color: #e1306c; }
+.social-icon--tt:hover  { color: #ffffff; border-color: #ffffff; background: #010101; }
+.social-icon--x:hover   { color: #ffffff; border-color: #ffffff; }
+.social-icon--yt:hover  { color: #ff0000; border-color: #ff0000; }
+.social-icon--maps:hover{ color: #4285f4; border-color: #4285f4; }
+.social-icon--web:hover { color: var(--accent2); border-color: var(--accent2); }
+
+/* ── MOOD ────────────────────────────────────────────────────── */
+.profile-mood {
+    font-size: 11px;
+    color: var(--accent2);
+    font-style: italic;
+    margin-top: 2px;
+}
+
+/* ── BOTÓN GUARDAR POST ─────────────────────────────────────── */
+.btn-save {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+}
+.btn-save:hover         { border-color: var(--accent2); color: var(--accent2); }
+.btn-save.saved         { border-color: var(--accent2); color: var(--accent2); }
+.btn-save.saved:hover   { border-color: #ff4444; color: #ff4444; }
+
+/* ── GUARDADOS (página saved.php) ──────────────────────────── */
+.saved-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.saved-item {
+    width: 130px;
+    text-align: center;
+}
+.saved-item a { display: block; }
+.saved-item img {
+    width: 130px;
+    height: 97px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
+}
+.saved-item img:hover { border-color: var(--accent); }
+.saved-item .saved-username {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 3px;
+}
+.saved-item .saved-date {
+    font-size: 10px;
+    color: var(--text-dim);
+}
+
+/* ── SHARE STORY (botón Instagram Stories) ─────────────────── */
+.btn-story {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: Verdana, sans-serif;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+}
+.btn-story:hover { opacity: 0.88; color: #fff; text-decoration: none; }
+/* Solo visible en móvil real — en desktop se muestra alternativa */
+.story-mobile-only { display: none; }
+@media (max-width: 768px) {
+    .story-mobile-only { display: inline-flex; }
+    .story-desktop-msg { display: none; }
+}
+.story-desktop-msg {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+/* ── BARRA DE ACCIONES DEL POST ─────────────────────────────── */
+#post-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 8px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-light);
+    flex-wrap: wrap;
+}
+
