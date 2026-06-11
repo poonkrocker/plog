@@ -6,9 +6,9 @@
 // ============================================================
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'pizzalog');
-define('DB_USER', 'pizzalog_user');
-define('DB_PASS', 'CAMBIAR_PASSWORD');
+define('DB_NAME', 'a0140456_pizza');
+define('DB_USER', 'a0140456_pizza');
+define('DB_PASS', 'PizzaPizza798');
 define('DB_CHARSET', 'utf8mb4');
 
 define('SITE_URL',   'https://pizzalog.net');
