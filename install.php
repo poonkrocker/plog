@@ -2,7 +2,7 @@
 // install.php — ELIMINAR después de la primera ejecución exitosa
 // Acceder una sola vez desde el navegador: https://pizzalog.net/install.php
 
-define('INSTALL_SECRET', 'CAMBIAR_ESTE_SECRETO'); // cambiar antes de subir
+define('INSTALL_SECRET', 'fotolog'); // cambiar antes de subir
 
 if (($_GET['secret'] ?? '') !== INSTALL_SECRET) {
     http_response_code(403);
@@ -35,7 +35,7 @@ foreach ($statements as $sql) {
 
 // Crear usuario admin inicial
 $admin_user = 'eze';
-$admin_mail = 'hola@arrabbiata.com.ar'; // ← cambiar antes de subir
+$admin_mail = 'prontoarrabbiata@gmail.com'; // ← cambiar antes de subir
 $admin_pass = bin2hex(random_bytes(8)); // contraseña generada aleatoriamente
 
 try {
